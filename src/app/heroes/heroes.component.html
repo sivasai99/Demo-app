@@ -1,15 +1,24 @@
 <h2>My Heroes</h2>
-
+<form #validateForm="ngForm" novalidate>
 <div>
-  <label>Hero name:
-    <input #heroName required/>
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value)">
+    <label>Hero name:
+        <input #heroName  required minlength="3" [(ngModel)]="heroName.value">
+      </label>
+
+  <div *ngIf="heroName.invalid && (heroName.dirty || heroName.touched)" class="alert alert-danger">
+  <div *ngIf="heroName.errors.required">
+    Name is required.
+  </div>
+
+
+
+    <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value)" >
     add
   </button>
-</div>
 
+</div>
+<div>
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
@@ -19,3 +28,5 @@
     (click)="delete(hero)">x</button>
   </li>
 </ul>
+</div>
+</form>
