@@ -2,10 +2,10 @@
 
 <div>
   <label>Hero name:
-    <input #heroName />
+    <input #heroName required/>
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value=''">
+  <button (click)="add(heroName.value)">
     add
   </button>
 </div>
@@ -13,7 +13,7 @@
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}{{dts }}
+      <span class="badge">{{hero.id}}</span> {{hero.name}}{{ hero.date | date:'MMM dd,y hh mm a' }}
     </a>
     <button class="delete" title="delete hero"
     (click)="delete(hero)">x</button>

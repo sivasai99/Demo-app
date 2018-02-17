@@ -1,5 +1,5 @@
 
-import { DatePipe } from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
@@ -19,24 +19,31 @@ import { MessageService }       from './message.service';
 import { MessagesComponent }    from './messages/messages.component';
 import { delay } from 'rxjs/operators';
 @NgModule({
-  imports: [
+
+  imports: 
+  [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
+    CommonModule,
     HttpClientModule,
-       HttpClientInMemoryWebApiModule.forRoot(
-        InMemoryDataService, { dataEncapsulation: false },
+    AppRoutingModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+    InMemoryDataService, { dataEncapsulation: false },
     )
   ],
-  declarations: [
+  declarations: 
+  [ 
     AppComponent,
-    DashboardComponent,
     HeroesComponent,
     HeroDetailComponent,
+    HeroSearchComponent,
     MessagesComponent,
-    HeroSearchComponent
+    DashboardComponent,
   ],
+
   providers: [ HeroService, MessageService ],
+
   bootstrap: [ AppComponent ]
+  
 })
 export class AppModule { }
